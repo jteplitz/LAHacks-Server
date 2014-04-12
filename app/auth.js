@@ -15,6 +15,7 @@
     } else if (level === 1){
       return function(req, res, next){
         var auth  = req.header("X-RUFFLES-AUTHENTICATION");
+        console.log("got auth", auth);
         if (!auth){
           // auth header is required
           return next(401);
@@ -23,6 +24,7 @@
         auth      = regex.exec(auth);
         if (!auth){
           // auth header was malformed
+          console.log("malformed auth");
           return next(401);
         }
         auth.splice(0, 1);
@@ -33,7 +35,7 @@
         schemas.User.findOne({email: auth[0]}, function(err, user){
           if (err){ console.log("error", err); return next(500) }
 
-          if (!user){ return next(401) }
+          if (!user){ console.log("no such user"); return next(401) }
 
           var hash = hashPassword(auth[1]);
           if (hash !== user.password){
