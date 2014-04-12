@@ -9,7 +9,6 @@
 
   SignupCtrl = function(schemas, conf){
     this.schemas = schemas;
-    this.conf    = conf;
   };
 
   _ptype = SignupCtrl.prototype = base.getProto("api");

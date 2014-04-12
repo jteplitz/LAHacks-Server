@@ -24,7 +24,7 @@
         }
       });
     }
-    var control = new ControllerClass(req._schemas, req._conf);
+    var control = new ControllerClass(req._schemas);
     control.signupUser(data, function(err){
       if (err){
         return res.json(500, {_err: err, status: 500});
