@@ -21,7 +21,8 @@
     var tabs = [];
     for (var i = 0; i < req.body.tabs.length; i++){
       var tab = {
-        url: req.body.tabs[i],
+        url: req.body.tabs[i].url,
+        favicon: req.body.tabs[i].favicon,
         order: i
       };
       tabs.push(tab);
