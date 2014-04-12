@@ -8,11 +8,9 @@
       ControllerClass = require("../controllers/Workspaces.js");
 
   handleGet = function(req, res, next){
-    var control = new ControllerClass();
+    var control = new ControllerClass(req._schemas, req.user);
 
-    var params = {valid: true, _err: 0};
-
-    control.renderData(res, params);
+    control.renderData(res, {});
   };
   
   dispatch = {GET: handleGet};

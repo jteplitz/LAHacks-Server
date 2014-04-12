@@ -11,7 +11,7 @@
   var routeList = [
     ["/u/signup",          Routes.Signup,       1, 0, 0, [      "post"]],
 
-    ["/d/workspaces",      Routes.Workspaces,   1, 0, 0, ["get"]       ]
+    ["/d/workspaces",      Routes.Workspaces,   1, 0, 1, ["get"]       ]
   ];
 
   module.exports = routeList;

@@ -35,12 +35,29 @@
   var User = new Schema({
     name: {type: String, required: true},
     email: {type: String, required: true, validate: validateEmail, index: {unique: true}},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    updatedAt: Number
+  });
+
+  var WebAccount = new Schema({
+    loginData: [{cssSelector: String, data: String}],
+    loginButton: String
+  });
+
+
+  var Workspace = new Schema({
+    tabs: [{url: String, order: {type: Number, index: {sparse: true}}}],
+    accounts: [WebAccount],
+    updatedAt: Number,
+    name: String,
+    owner: ObjectId
   });
 
 
   User.pre("save", updateTime);
+  Workspace.pre("save", updateTime);
 
 
-  exports.User   = mongoose.model("User", User);
+  exports.User      = mongoose.model("User", User);
+  exports.Workspace = mongoose.model("Workspace", Workspace);
 }());
