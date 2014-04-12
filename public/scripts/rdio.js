@@ -7,7 +7,8 @@
       if (!ready){
         return;
       }
-      console.log("data", R.accessToken());
+      chrome.runtime.sendMessage("bpacmphlogdcmmioefbknbdpbjenglhg",
+                                 {type: "rdio", accessToken: R.accessToken()});
     });
   });
 }());
