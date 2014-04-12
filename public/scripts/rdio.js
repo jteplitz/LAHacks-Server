@@ -2,13 +2,23 @@
 (function(){
   "use strict";
 
+  var sendAccessToken;
+
   R.ready(function(ready){
-    R.authenticate(function(){
-      if (!ready){
-        return;
-      }
-      chrome.runtime.sendMessage("bpacmphlogdcmmioefbknbdpbjenglhg",
-                                 {type: "rdio", accessToken: R.accessToken()});
-    });
+    if (!R.authenticated){
+      R.authenticate(function(){
+        if (!ready){
+          return;
+        }
+        sendAccessToken();
+      });
+    } else {
+      sendAccessToken();
+    }
   });
+
+  sendAccessToken = function(){
+    chrome.runtime.sendMessage("bpacmphlogdcmmioefbknbdpbjenglhg",
+                               {type: "rdio", accessToken: R.accessToken()});
+  };
 }());
