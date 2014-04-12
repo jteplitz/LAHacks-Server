@@ -2,7 +2,8 @@
 (function(){
   "use strict";
 
-  var sendAccessToken;
+  var extensionId = "dihjneilmgoagbmdbgonjhlkaiagoand",
+      sendAccessToken;
 
   R.ready(function(ready){
     if (!R.authenticated){
@@ -18,7 +19,7 @@
   });
 
   sendAccessToken = function(){
-    chrome.runtime.sendMessage("bpacmphlogdcmmioefbknbdpbjenglhg",
+    chrome.runtime.sendMessage(extensionId,
                                {type: "rdio", accessToken: R.accessToken()});
   };
 }());
