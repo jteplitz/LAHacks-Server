@@ -40,13 +40,14 @@
   });
 
   var WebAccount = new Schema({
+    loginPage: String,
     loginData: [{cssSelector: String, data: String}],
     loginButton: String
   });
 
 
   var Workspace = new Schema({
-    tabs: [{url: String, order: {type: Number, index: {sparse: true}}}],
+    tabs: [{url: String, order: Number}], // TODO: index?
     accounts: [WebAccount],
     updatedAt: Number,
     name: String,

@@ -31,7 +31,6 @@
           return next(401);
         }
         schemas.User.findOne({email: auth[0]}, function(err, user){
-          debugger;
           if (err){ console.log("error", err); return next(500) }
 
           if (!user){ return next(401) }
