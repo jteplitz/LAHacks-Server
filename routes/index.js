@@ -3,11 +3,12 @@
 
   var Routes = {
     Signup: require("./Signup.js"),
-    Workspaces: require("./Workspaces"),
+    Workspaces: require("./Workspaces.js"),
     
-    ChromeWorkspace: require("./ChromeWorkspace"),
+    ChromeWorkspace: require("./ChromeWorkspace.js"),
     
-    Kloudless: require("./Kloudless")
+    Kloudless: require("./Kloudless.js"),
+    Folder: require("./Folder.js")
   };
 
   // route, function, schemas, conf, auth, methods
@@ -16,6 +17,7 @@
     ["/u/signup",          Routes.Signup,           1, 0, 0, [      "post"        ]],
 
     ["/d/workspaces",      Routes.Workspaces,       1, 0, 1, ["get", "post"       ]],
+    ["/d/folder/:id?",     Routes.Folder,           1, 1, 1, ["get"               ]],
 
     ["/c/workspace/:id",   Routes.ChromeWorkspace,  1, 0, 1, ["get", "post"       ]],
 
