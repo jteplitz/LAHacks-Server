@@ -21,7 +21,7 @@
   mongoose.connect(conf.get("mongo"));
 
   // all environments
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', conf.get("PORT") || 3000);
   app.set('views', __dirname + '/templates');
   app.use(express.favicon());
   app.use(express.logger('dev'));
