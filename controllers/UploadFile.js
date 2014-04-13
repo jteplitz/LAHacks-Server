@@ -34,7 +34,7 @@
       path: "/v0/accounts/" + account + "/files/true",
       protocol: "https:",
       port: 443,
-      Authentication: "ApiKey " + this.conf.get("kloudless:api_key")
+      Authorization: "ApiKey " + this.conf.get("kloudless:api_key")
     }, cb);
 
     /*console.log("Form", form);
