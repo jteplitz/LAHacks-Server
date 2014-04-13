@@ -22,6 +22,7 @@
     var headers = {
       "Authorization": "ApiKey " + this.conf.get("kloudless:api_key")
     };
+    console.log("files", req.files.file);
     var options = {
       host: "api.kloudless.com",
       path: "/v0/accounts/" + account + "/files/true",
@@ -30,14 +31,16 @@
       postFormat: "multipart",
       headers: headers
     };
-    console.log("files", req.files.file);
+    console.log("requesting", req.files.file);
     var data = {
       parent_id: parent,
       name: name,
       file: fs.createReadStream(req.files.file)
     };
     console.log("options", options);
-    request.request(options, data, "json", function(err){
+    console.log("data", data);
+    request.request(options, data, "json", function(err, response){
+      console.log("response", response);
       if (err){
         return cb(err);
       }
