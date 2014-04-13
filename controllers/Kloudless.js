@@ -18,7 +18,8 @@
   _ptype._name = "Kloudless";
 
   _ptype.addKloudlessAccounts = function(accounts, cb){
-    this.user.accounts = accounts;
+    debugger;
+    this.user.kloudless_accounts = accounts;
     this.user.markModified("accounts");
     
     this.user.save(cb);

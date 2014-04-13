@@ -22,8 +22,8 @@
     var authHeader = {"X-RUFFLES-AUTHENTICATION": "email=\"" + user.email + "\", pass=\"" + user.pass + "\", version=\"1\""};
     $.ajax({
       contentType: "application/json",
-      data: result,
-      headers: [authHeader],
+      data: JSON.stringify({accounts: [result]}),
+      headers: authHeader,
       type: "PUT",
       success: function(data){
         if (data._err !== 0){
