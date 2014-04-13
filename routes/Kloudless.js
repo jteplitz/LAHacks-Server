@@ -36,7 +36,7 @@
       }
       var control = new ControllerClass(req._schemas, user);
 
-      req.user = user;
+      req.session.user = user;
       control.renderView(res, {name: user.name});
     });
   };

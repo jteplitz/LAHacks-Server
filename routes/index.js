@@ -19,7 +19,7 @@
 
     ["/c/workspace/:id",   Routes.ChromeWorkspace,  1, 0, 1, ["get", "post"]],
 
-    ["/u/kloudless",       Routes.Kloudless,        1, 0, 1, ["get", "post"]]
+    ["/u/kloudless",       Routes.Kloudless,        1, 0, 0, ["get", "post"]]
   ];
 
   module.exports = routeList;
