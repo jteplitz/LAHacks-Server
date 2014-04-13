@@ -43,15 +43,15 @@
     console.log("options", options);
 
     //form.submit(options, cb);
-    https.request(options);
-    req.on("response", function(res){
+    var request = https.request(options);
+    request.on("response", function(res){
       if (res.statusCode !== 200){
         console.log("error", res.body);
         return cb({_err: res.statusCode});
       }
       return cb(null);
     });
-    req.on("error", cb);
+    request.on("error", cb);
     form.pipe(req);
 
     /*console.log("Form", form);
