@@ -15,7 +15,7 @@
   _ptype._name = "ChromeWorkspace";
 
   _ptype.addChromeData = function(data, cb){
-    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts",
+    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts rdioSource",
                                    function(err, workspace){
       if (err){ return cb(err) }
 
@@ -26,14 +26,15 @@
         });
       }
 
-      workspace.tabs     = data.tabs;
-      workspace.accounts = data.accounts;
+      workspace.tabs       = data.tabs;
+      workspace.accounts   = data.accounts;
+      workspace.rdioSource = data.rdioSource;
       workspace.save(cb);
     });
   };
 
   _ptype.prePrep = function(data, cb){
-    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts",
+    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts rdioSource",
                                    function(err, workspace){
       if (err){ return cb(err) }
 

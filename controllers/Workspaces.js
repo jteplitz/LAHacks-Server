@@ -28,7 +28,7 @@
   _ptype.createWorkspace = function(data, cb){
     var workspace = new this.schemas.Workspace({
       name: data.name,
-      apps: (data.apps) ? data.apps : [],
+      apps: (data.apps) ? data.apps.split("|;") : [],
       rdioSource: (data.rdioSource) ? data.rdioSource : null,
       owner: this.user._id
     });
