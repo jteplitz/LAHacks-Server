@@ -22,22 +22,33 @@
 
   _ptype.saveFile = function(req, account, parent, name, cb){
     console.log("Posting to account " + account + " with parent " + parent + " and name " + name);
+
     var form = new FormData();
     form.append("parent_id", parent);
     form.append("name", name);
     form.append("file", fs.createReadStream(req.files.file.path), {knownLength: req.files.file.size});
-    console.log("file size", req.files.file.size);
+
+    var headers = form.getHeaders();
+    headers.Authorization = "ApiKey " + this.conf.get("kloudless:api_key");
     //form.append("file", fs.createReadStream(req.files.file.path));
     var options = {
       host: "api.kloudless.com",
       path: "/v0/accounts/" + account + "/files?overwrite=true",
-      protocol: "https:",
-      port: 443,
-      auth: "ApiKey " + this.conf.get("kloudless:api_key")
+      headers: headers
     };
     console.log("options", options);
 
-    form.submit(options, cb);
+    //form.submit(options, cb);
+    https.request(options);
+    req.on("response", function(res){
+      if (res.statusCode !== 200){
+        console.log("error", res.body);
+        return cb({_err: res.statusCode});
+      }
+      return cb(null);
+    });
+    req.on("error", cb);
+    form.pipe(req);
 
     /*console.log("Form", form);
 
