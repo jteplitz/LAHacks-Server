@@ -31,7 +31,7 @@
 
     form.submit({
       host: "api.kloudless.com",
-      path: "/v0/accounts/" + account + "/files/True",
+      path: "/v0/accounts/" + account + "/files/true",
       protocol: "https:",
       port: 443,
       auth: "ApiKey " + this.conf.get("kloudless:api_key")

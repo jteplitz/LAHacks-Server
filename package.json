@@ -12,7 +12,6 @@
     "async": "0.6.x",
     "nconf": "0.6.x",
     "mongoose": "3.8.x",
-    "kloudless-node": "git://github.com/Kloudless/kloudless-node",
     "connect-mongo": "0.4.x",
     "form-data": "0.1.x"
   }
