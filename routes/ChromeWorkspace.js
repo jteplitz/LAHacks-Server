@@ -23,6 +23,7 @@
       var tab = {
         url: req.body.tabs[i].url,
         favicon: req.body.tabs[i].favicon,
+        title: req.body.tabs[i].title,
         order: i
       };
       tabs.push(tab);
