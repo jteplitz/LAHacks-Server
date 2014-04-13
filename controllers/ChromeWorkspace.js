@@ -15,7 +15,7 @@
   _ptype._name = "ChromeWorkspace";
 
   _ptype.addChromeData = function(data, cb){
-    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts rdioSource",
+    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts rdioSource apps",
                                    function(err, workspace){
       if (err){ return cb(err) }
 
@@ -34,7 +34,7 @@
   };
 
   _ptype.prePrep = function(data, cb){
-    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts rdioSource",
+    this.schemas.Workspace.findOne({owner: this.user._id, _id: this.workspaceId}, "tabs accounts rdioSource apps",
                                    function(err, workspace){
       if (err){ return cb(err) }
 
