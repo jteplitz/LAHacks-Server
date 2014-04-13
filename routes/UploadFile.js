@@ -2,18 +2,23 @@
   "use strict";
 
   var _ = require("underscore"),
-      handleGet,
+      handlePost,
       handler, dispatch,
 
-      ControllerClass = require("../controllers/File.js");
+      ControllerClass = require("../controllers/UploadFile.js");
 
-  handleGet = function(req, res, next){
+  handlePost = function(req, res, next){
     var control = new ControllerClass(req._schemas, req._conf, req.user);
     
-    control.serveFile(req, res, req.params.id, req.query.account);
+    control.saveFile(req, req.params.account, req.params.parent, req.params.id, function(err){
+      if (err){
+        return res.json(500, {_err: err});
+      }
+      return res.json({_err: 0});
+    });
   };
 
-  dispatch = {GET: handleGet};
+  dispatch = {POST: handlePost};
   handler = function(req, res, next){
     if (_.has(dispatch, req.method)){
       return dispatch[req.method](req, res, next);

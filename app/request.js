@@ -61,6 +61,8 @@
       req.setHeader( 'Content-Length', postdata.length );
       if (_.has(options, "postFormat") && options.postFormat === "json"){
         req.setHeader("Content-Type", "application/json");
+      } else if(_.has(options, "postFormat") && options.postFormat === "multipart"){
+        req.setHeader("Content-Type", "multipart/form-data");
       } else {
         req.setHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
       }
