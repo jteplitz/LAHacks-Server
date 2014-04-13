@@ -24,11 +24,14 @@
     if (!email || !pass){
       return next(401);
     }
+    console.log("got data", email, pass);
 
     req._schemas.User.findOne({email: email}, function(err, user){
       if (err){ console.log("error", err); return next(500) }
 
       if (!user){ console.log("no such user"); return next(401) }
+
+      console.log("got user", user);
 
       var hash = hashPassword(pass);
       if (hash !== user.password){
