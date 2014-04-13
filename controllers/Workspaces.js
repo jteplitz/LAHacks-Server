@@ -16,7 +16,7 @@
   _ptype._name = "Workspaces";
 
   _ptype.prePrep = function(data, cb){
-    this.schemas.Workspace.find({owner: this.user._id}, "_id name updatedAt", function(err, workspaces){
+    this.schemas.Workspace.find({owner: this.user._id}, "_id name updatedAt tabs", function(err, workspaces){
       if (err){ console.log("Error", err); return cb(err) }
 
       data.workspaces = workspaces;
