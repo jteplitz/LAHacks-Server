@@ -5,7 +5,9 @@
     Signup: require("./Signup.js"),
     Workspaces: require("./Workspaces"),
     
-    ChromeWorkspace: require("./ChromeWorkspace")
+    ChromeWorkspace: require("./ChromeWorkspace"),
+    
+    Kloudless: require("./Kloudless")
   };
 
   // route, function, schemas, conf, auth, methods
@@ -15,7 +17,9 @@
 
     ["/d/workspaces",      Routes.Workspaces,       1, 0, 1, ["get", "post"]],
 
-    ["/c/workspace/:id",   Routes.ChromeWorkspace,  1, 0, 1, ["get", "post"]]
+    ["/c/workspace/:id",   Routes.ChromeWorkspace,  1, 0, 1, ["get", "post"]],
+
+    ["/u/kloudless",       Routes.Kloudless,        1, 0, 1, ["get", "post"]]
   ];
 
   module.exports = routeList;
