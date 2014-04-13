@@ -28,12 +28,17 @@
     //form.append("file", fs.createReadStream(req.files.file.path), {knownLength: 11885});
     form.append("file", fs.createReadStream(req.files.file.path));
 
-    console.log("Form", form);
+    form.submit({
+      host: "api.kloudless.com",
+      path: "/v0/accounts/" + account + "/files/True",
+      auth: "ApiKey " + this.conf.get("kloudless:api_key")
+    }, cb);
+
+    /*console.log("Form", form);
 
     var headers = form.getHeaders();
     headers.Authorization     = "ApiKey " + this.conf.get("kloudless:api_key");
     //headers["Content-Length"] = form.getLengthSync();
-    headers["Content-Type"]   = "multipart/form-data";
 
     var options = {
       host: "api.kloudless.com",
@@ -52,7 +57,7 @@
         return cb({_err: res});
       }
       return cb();
-    });
+    });*/
 
     /*request.request(options, data, "json", function(err, response){
       if (err){
