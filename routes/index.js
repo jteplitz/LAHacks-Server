@@ -8,7 +8,8 @@
     ChromeWorkspace: require("./ChromeWorkspace.js"),
     
     Kloudless: require("./Kloudless.js"),
-    Folder: require("./Folder.js")
+    Folder: require("./Folder.js"),
+    File: require("./File.js")
   };
 
   // route, function, schemas, conf, auth, methods
@@ -21,7 +22,8 @@
 
     ["/c/workspace/:id",   Routes.ChromeWorkspace,  1, 0, 1, ["get", "post"       ]],
 
-    ["/u/kloudless",       Routes.Kloudless,        1, 0, 2, [       "post", "put"]]
+    ["/u/kloudless",       Routes.Kloudless,        1, 0, 2, [       "post", "put"]],
+    ["/d/file/:id",        Routes.File,             1, 1, 1, ["get", "post"       ]]
   ];
 
   module.exports = routeList;

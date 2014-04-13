@@ -24,6 +24,9 @@
     var req = transport.request(
       options,
       function( res ) {
+        if (retformat === "binary"){
+          return cb(null, {type: "response", res: res});
+        }
         var chunks = [],
             errmsg;
         res.on( 'data', function( chunk ) { chunks.push( chunk ) } );
@@ -64,6 +67,9 @@
       req.write( postdata );
     }
     req.end();
+    if (retformat === "binary"){
+      return cb(null, {type: "request", req: req});
+    }
   };
 
   exports.request = request;
