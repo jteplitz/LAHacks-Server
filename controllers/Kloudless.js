@@ -7,6 +7,7 @@
       KloudlessCtrl, _ptype;
 
   KloudlessCtrl = function(schemas, user){
+    debugger;
     console.log("making controller");
     this.schemas = schemas;
     this.user    = user;

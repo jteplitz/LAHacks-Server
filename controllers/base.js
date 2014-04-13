@@ -6,7 +6,6 @@
       conf  = require('nconf').argv().env().file({file: __dirname + '/../config.json'}),
 
       prep, renderView, getName, getView, getSubctrls, doPrePrep, doPrep, doPostPrep,
-      addBlocks, addStyles, addScripts,
       apiPrep, renderData,
 
       getProto,
@@ -26,7 +25,6 @@
     data.routeName = self.getName();
     async.series([
       function(cb) { doPrePrep(data, self, cb); },
-      function(cb) { addBlocks(data, blocks, cb); },
       function(cb) { doPrep(data, res, self, false, cb); },
       function(cb) { doPostPrep(data, self, cb); }
     ], function(err){
@@ -133,38 +131,6 @@
   };
   getProto = function get_proto( type ) {
     return _.clone( _protoSet[ type ] );
-  };
-
-  addBlocks = function(params, block, cb){
-    params.scripts = addScripts(block.scripts);
-    params.styles  = addStyles(block.styles);
-    cb();
-  };
-
-  // block rendering
-  addStyles = function(styles){
-    if (typeof styles === "undefined"){
-      // no styles
-      return;
-    }
-    var stylesString = "";
-    for (var i = 0; i < styles.length; i++){
-      stylesString += "<link rel=\"stylesheet\" href=\"/stylesheets/" + styles[i] + "\" />";
-    }
-    return stylesString;
-  };
-
-  // takes the script names and add script tags
-  addScripts = function(scripts){
-    if (typeof scripts === "undefined"){
-      // no scripts
-      return;
-    }
-    var scriptsString = "";
-    for (var i = 0; i < scripts.length; i++){
-      scriptsString += "<script type=\"text/javascript\" src=\"/javascripts/" + scripts[i] + "\"></script>";
-    }
-    return scriptsString;
   };
 
   module.exports = {

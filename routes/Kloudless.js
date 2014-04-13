@@ -3,33 +3,33 @@
 
   var _      = require("underscore"),
       crypto = require("crypto"),
-      handleGet, handlePost,
+      handlePost, doInit,
       handler, dispatch,
 
       ControllerClass = require("../controllers/Kloudless.js"),
       hashPassword;
 
-  handleGet = function(req, res, next){
-    var control = new ControllerClass();
+  handlePost = function(req, res, next){
+    var type  = req.body.type;
 
-    var params = {};
-
-    control.renderView(res, params);
+    if (type === "init"){
+      return doInit(req, res, next);
+    }
   };
 
-  handlePost = function(req, res, next){
+  doInit = function(req, res, next){
     var email = req.body.email;
     var pass  = req.body.pass;
-
+    console.log("got data", email, pass);
     if (!email || !pass){
       return next(401);
     }
-    console.log("got data", email, pass);
 
     req._schemas.User.findOne({email: email}, function(err, user){
       if (err){ console.log("error", err); return next(500) }
 
       if (!user){ console.log("no such user"); return next(401) }
+      debugger;
 
       console.log("got user", user);
 
@@ -39,12 +39,11 @@
       }
       var control = new ControllerClass(req._schemas, user);
 
-      req.session.user = user;
-      control.renderView(res, {name: user.name});
+      control.renderView(res, {name: user.name, email: email, pass: pass});
     });
   };
   
-  dispatch = {GET: handleGet, POST: handlePost};
+  dispatch = {POST: handlePost};
   handler = function(req, res, next){
     if (_.has(dispatch, req.method)){
       return dispatch[req.method](req, res, next);

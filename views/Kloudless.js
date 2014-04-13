@@ -6,7 +6,7 @@
 
   var KloudlessView, _ptype;
 
-  KloudlessView = function(){};
+  KloudlessView = function(){debugger;};
 
   _ptype = KloudlessView.prototype = base.getProto("std");
   _ptype._view_name = "KloudlessView";
