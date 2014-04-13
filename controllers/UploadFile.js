@@ -33,7 +33,7 @@
       path: "/v0/accounts/" + account + "/files/True",
       protocol: "https:",
       port: 443,
-      Authorization: "ApiKey " + this.conf.get("kloudless:api_key")
+      headers: {Authorization: "ApiKey " + this.conf.get("kloudless:api_key")}
     };
     console.log("options", options);
 
