@@ -1,3 +1,4 @@
+!!! 5
 html
   head
     script(type="text/javascript").
@@ -8,5 +9,33 @@ html
     script(type"text/javascript", src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
     script(type="text/javascript", src="/scripts/kloudless.js")
     script(type="text/javascript", src="https://kloudless-static-assets.s3-us-west-2.amazonaws.com/p/platform/sdk/kloudless.authenticator.v0.1.js")
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/kloudless.css')
+    title Wormhole Authentication
   body
     button#auth(type="button") Connect your files
+    h1 Connect your accounts
+    .services
+      .service-box
+        img.logo-box(src='img/boxlogo.png')
+        h2 Box
+        .action
+          a.connect#box(href='connect') Connect
+      .service-box
+        img.logo-dropbox(src='img/dropboxlogo.png')
+        h2 Dropbox
+        .action
+          a.connected#dropbox(href='connect') ✔  Connected");");
+      .service-box
+        img.logo-drive(src='img/drivelogo.png')
+        h2 Google Drive
+        .action
+          a.connect#gdrive(href='connect') Connect
+      .service-box
+        img.logo-onedrive(src='img/onedrivelogo.png')
+        h2 OneDrive
+        .action
+          a.connect#skydrive(href='connect') Connect
+    .done
+      a.finish#save(href='what') Finish →
+

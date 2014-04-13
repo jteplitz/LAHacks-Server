@@ -2,23 +2,41 @@
 (function(){
   "use strict";
 
-  var saveAuth,
+  var saveAuth, authHandler,
       
-      extensionId = "dihjneilmgoagbmdbgonjhlkaiagoand";
+      extensionId = "dihjneilmgoagbmdbgonjhlkaiagoand",
+      appId       = "ugFAYVW2xcY3zcfeO0pvHZBk7YQlcG_LtYTPrIZHjJheSp7q";
 
   $(document).ready(function(){
-    Kloudless.authenticator($("#auth"), {
-      "app_id": "ugFAYVW2xcY3zcfeO0pvHZBk7YQlcG_LtYTPrIZHjJheSp7q"
-    }, function(err, result){
+    Kloudless.authenticator($("#box"), {
+      "app_id": appId,
+      "services": ["box"]
+    }, authHandler);
+    Kloudless.authenticator($("#dropbox"), {
+      "app_id": appId,
+      "services": ["dropbox"]
+    }, authHandler);
+    Kloudless.authenticator($("#gdrive"), {
+      "app_id": appId,
+      "services": ["gdrive"]
+    }, authHandler);
+    Kloudless.authenticator($("#onedrive"), {
+      "app_id": appId,
+      "services": ["onedrive"]
+    }, authHandler);
+    $("#save").click(saveAuth);
+  });
+
+  authHandler = function(err, result){
       if (err){
         return console.log("error", err);
       }
 
-      $("#auth").hide();
-
-      saveAuth(result);
-    });
-  });
+      var elem = $("#" + result.service);
+      elem.removeClass("connect");
+      elem.addClass("connected");
+      elem.text("✔  Connected");
+  };
 
   saveAuth = function(result){
     var authHeader = {"X-RUFFLES-AUTHENTICATION": "email=\"" + user.email + "\", pass=\"" + user.pass + "\", version=\"1\""};
