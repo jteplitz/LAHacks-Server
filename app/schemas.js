@@ -53,7 +53,8 @@
     updatedAt: Number,
     name: String,
     owner: ObjectId,
-    apps: [{name: String, path: String}]
+    apps: [{name: String, path: String}],
+    rdioSource: String
   });
 
 

@@ -29,6 +29,7 @@
     var workspace = new this.schemas.Workspace({
       name: data.name,
       apps: (data.apps) ? data.apps : [],
+      rdioSource: (data.rdioSource) ? data.rdioSource : null,
       owner: this.user._id
     });
     workspace.save(cb);
