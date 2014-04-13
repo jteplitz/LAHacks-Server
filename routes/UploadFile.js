@@ -11,8 +11,7 @@
     console.log("got upload request", req.params.account, req.params.parent, req.params.id);
     var control = new ControllerClass(req._schemas, req._conf, req.user);
     
-    control.saveFile(req, req.params.account, req.params.parent, req.params.id, function(err, data){
-      console.log("file save returned", err, data.statusCode);
+    control.saveFile(req, req.params.account, req.params.parent, req.params.id, function(err){
       if (err){
         return res.json(500, {_err: err});
       }

@@ -33,7 +33,7 @@
 
     var headers = form.getHeaders();
     headers.Authorization = "ApiKey " + this.conf.get("kloudless:api_key");
-    //form.append("file", fs.createReadStream(req.files.file.path));
+
     var options = {
       host: "api.kloudless.com",
       path: "/v0/accounts/" + account + "/files?overwrite=true",
@@ -42,10 +42,9 @@
     };
     console.log("options", options);
 
-    //form.submit(options, cb);
     var request = https.request(options);
     request.on("response", function(res){
-      if (res.statusCode !== 200){
+      if (res.statusCode >= 300){
         console.log("error", res.body);
         return cb({_err: res.statusCode});
       }
@@ -53,43 +52,6 @@
     });
     request.on("error", cb);
     form.pipe(request);
-
-    /*console.log("Form", form);
-
-    var headers = form.getHeaders();
-    headers.Authorization     = "ApiKey " + this.conf.get("kloudless:api_key");
-    //headers["Content-Length"] = form.getLengthSync();
-
-    var options = {
-      host: "api.kloudless.com",
-      path: "/v0/accounts/" + account + "/files/True",
-      method: "post",
-      headers: headers
-    };
-    console.log("options", options);
-
-    var request = https.request(options);
-    form.pipe(request);
-
-    request.on('response', function(res) {
-      console.log("got response", res.statusCode, res);
-      if (res.statusCode !== 200){
-        return cb({_err: res});
-      }
-      return cb();
-    });*/
-
-    /*request.request(options, data, "json", function(err, response){
-      if (err){
-        return cb(err);
-      }
-      if (response.hasOwnProperty("type") && response.type === "request"){
-        console.log("piping", data.req, stream);
-        stream.pipe(data.req);
-      }
-      console.log("response", response);
-      return cb();
-    });*/
   };
 
 
