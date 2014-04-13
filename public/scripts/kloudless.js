@@ -2,7 +2,9 @@
 (function(){
   "use strict";
 
-  var saveAuth;
+  var saveAuth,
+      
+      extensionId = "dihjneilmgoagbmdbgonjhlkaiagoand";
 
   $(document).ready(function(){
     Kloudless.authenticator($("#auth"), {
@@ -30,9 +32,8 @@
           console.log(data);
           return alert("error");
         }
-        chrome.tabs.getCurrent(function(tabInfo){
-          chrome.tabs.remove(tabInfo.id);
-        });
+        chrome.runtime.sendMessage(extensionId,
+                               {type: "close"});
       }
     });
   };
