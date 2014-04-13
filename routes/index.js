@@ -10,7 +10,8 @@
     Kloudless: require("./Kloudless.js"),
     Folder: require("./Folder.js"),
     File: require("./File.js"),
-    UploadFile: require("./UploadFile.js")
+    UploadFile: require("./UploadFile.js"),
+    UpdateRdio: require("./UpdateRdio.js")
   };
 
   // route, function, schemas, conf, auth, methods
@@ -25,7 +26,8 @@
 
     ["/u/kloudless",       Routes.Kloudless,              1, 0, 2, [       "post", "put"]],
     ["/d/file/:id",        Routes.File,                   1, 1, 1, ["get"               ]],
-    ["/d/file/:account/:parent/:id", Routes.UploadFile,   1, 1, 1, [       "post"       ]]
+    ["/d/file/:account/:parent/:id", Routes.UploadFile,   1, 1, 1, [       "post"       ]],
+    ["/c/workspace/:workspace_id/rdio",  Routes.UpdateRdio, 1, 0, 1,  ["post" ]]
   ];
 
   module.exports = routeList;
