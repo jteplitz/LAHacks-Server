@@ -21,10 +21,13 @@
   _ptype._name = "File";
 
   _ptype.saveFile = function(req, account, parent, name, cb){
+    console.log("Posting to account " + account + " with parent " + parent + " and name " + name);
     var form = new FormData();
     form.append("parent_id", parent);
     form.append("name", name);
     form.append("file", fs.createReadStream(req.files.file.path));
+
+    console.log("Form", form);
 
     var headers = form.getHeaders();
     headers.Authorization = "ApiKey " + this.conf.get("kloudless:api_key");
