@@ -68,9 +68,13 @@
       }
       req.write( postdata );
     }
-    req.end();
-    if (retformat === "binary"){
+    if (_.has(options, "postFormat") && options.postFormat === "multipart"){
       return cb(null, {type: "request", req: req});
+    } else {
+      req.end();
+      if (retformat === "binary"){
+        return cb(null, {type: "request", req: req});
+      }
     }
   };
 

@@ -32,18 +32,22 @@
       headers: headers
     };
     console.log("requesting", req.files.file);
+    var stream = fs.createReadStream(req.files.file.path);
     var data = {
       parent_id: parent,
-      name: name,
-      file: fs.createReadStream(req.files.file.path)
+      name: name
     };
     console.log("options", options);
     console.log("data", data);
     request.request(options, data, "json", function(err, response){
-      console.log("response", response);
       if (err){
         return cb(err);
       }
+      if (response.hasOwnProperty("type") && response.type === "request"){
+        console.log("piping");
+        stream.pipe(data.req);
+      }
+      console.log("response", response);
       return cb();
     });
   };
