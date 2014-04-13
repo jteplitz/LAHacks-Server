@@ -52,7 +52,7 @@
       return cb(null);
     });
     request.on("error", cb);
-    form.pipe(req);
+    form.pipe(request);
 
     /*console.log("Form", form);
 
