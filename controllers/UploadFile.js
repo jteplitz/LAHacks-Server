@@ -25,17 +25,20 @@
     var form = new FormData();
     form.append("parent_id", parent);
     form.append("name", name);
+    //form.append("file", fs.createReadStream(req.files.file.path), {knownLength: 11885});
     form.append("file", fs.createReadStream(req.files.file.path));
 
     console.log("Form", form);
 
     var headers = form.getHeaders();
-    headers.Authorization = "ApiKey " + this.conf.get("kloudless:api_key");
+    headers.Authorization     = "ApiKey " + this.conf.get("kloudless:api_key");
+    //headers["Content-Length"] = form.getLengthSync();
+    headers["Content-Type"]   = "multipart/form-data";
 
     var options = {
       host: "api.kloudless.com",
-      path: "/v0/accounts/" + account + "/files/true",
-      method: "POST",
+      path: "/v0/accounts/" + account + "/files/True",
+      method: "post",
       headers: headers
     };
     console.log("options", options);
