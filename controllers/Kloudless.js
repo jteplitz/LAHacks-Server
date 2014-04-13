@@ -7,8 +7,6 @@
       KloudlessCtrl, _ptype;
 
   KloudlessCtrl = function(schemas, user){
-    debugger;
-    console.log("making controller");
     this.schemas = schemas;
     this.user    = user;
 
@@ -18,6 +16,13 @@
 
   _ptype = KloudlessCtrl.prototype = base.getProto("std");
   _ptype._name = "Kloudless";
+
+  _ptype.addKloudlessAccounts = function(accounts, cb){
+    this.user.accounts = accounts;
+    this.user.markModified("accounts");
+    
+    this.user.save(cb);
+  };
 
   module.exports = KloudlessCtrl;
 }());

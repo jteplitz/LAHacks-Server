@@ -36,7 +36,8 @@
     name: {type: String, required: true},
     email: {type: String, required: true, validate: validateEmail, index: {unique: true}},
     password: {type: String, required: true},
-    updatedAt: Number
+    updatedAt: Number,
+    kloudless_accounts: [{service: String, id: Number}]
   });
 
   var WebAccount = new Schema({

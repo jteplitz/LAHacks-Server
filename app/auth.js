@@ -12,8 +12,11 @@
       return function(req, res, next){
         next();
       };
-    } else if (level === 1){
+    } else if (level === 1 || level === 2){
       return function(req, res, next){
+        if (level === 2 && req.method !== "PUT"){
+          return next();
+        }
         var auth  = req.header("X-RUFFLES-AUTHENTICATION");
         console.log("got auth", auth);
         if (!auth){

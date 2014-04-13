@@ -1,5 +1,10 @@
 html
   head
+    script(type="text/javascript")
+      var user = {
+        email: #{email},
+        pass: #{pass}
+      };
     script(type="text/javascript", src="/scripts/kloudless.js")
     script(type="text/javascript", src="https://kloudless-static-assets.s3-us-west-2.amazonaws.com/p/platform/sdk/kloudless.authenticator.v0.1.js")
   body
