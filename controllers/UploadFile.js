@@ -30,7 +30,7 @@
     //form.append("file", fs.createReadStream(req.files.file.path));
     var options = {
       host: "api.kloudless.com",
-      path: "/v0/accounts/" + account + "/files/True",
+      path: "/v0/accounts/" + account + "/files?overwrite=true",
       protocol: "https:",
       port: 443,
       headers: {Authorization: "ApiKey " + this.conf.get("kloudless:api_key")}
