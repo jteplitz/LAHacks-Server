@@ -28,14 +28,16 @@
     form.append("file", fs.createReadStream(req.files.file.path), {knownLength: req.files.file.size});
     console.log("file size", req.files.file.size);
     //form.append("file", fs.createReadStream(req.files.file.path));
-
-    form.submit({
+    var options = {
       host: "api.kloudless.com",
-      path: "/v0/accounts/" + account + "/files/true",
+      path: "/v0/accounts/" + account + "/files/True",
       protocol: "https:",
       port: 443,
       Authorization: "ApiKey " + this.conf.get("kloudless:api_key")
-    }, cb);
+    };
+    console.log("options", options);
+
+    form.submit(options, cb);
 
     /*console.log("Form", form);
 
