@@ -13,6 +13,6 @@
     "nconf": "0.6.x",
     "mongoose": "3.8.x",
     "connect-mongo": "0.4.x",
-    "form-data": "git://github.com/jteplitz602/node-form-data.git"
+    "form-data": "0.1.x"
   }
 }
