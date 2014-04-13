@@ -48,7 +48,7 @@
 
 
   var Workspace = new Schema({
-    tabs: [{url: String, favicon: String, order: Number}], // TODO: index?
+    tabs: [{url: String, favicon: String, title: String, order: Number}], // TODO: index?
     accounts: [WebAccount],
     updatedAt: Number,
     name: String,
