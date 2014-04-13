@@ -35,7 +35,7 @@
     var data = {
       parent_id: parent,
       name: name,
-      file: fs.createReadStream(req.files.file)
+      file: fs.createReadStream(req.files.file.path)
     };
     console.log("options", options);
     console.log("data", data);
