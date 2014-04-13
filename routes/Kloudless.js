@@ -33,11 +33,9 @@
   };
 
   handlePut = function(req, res, next){
-    debugger;
     var accounts = req.body.accounts;
     var control = new ControllerClass(req._schemas, req.user);
     control.addKloudlessAccounts(accounts, function(err){
-      debugger;
       if (err){ return res.json(500, {_err: err}) }
 
       return res.json({_err: 0});
@@ -46,7 +44,6 @@
   
   dispatch = {POST: handlePost, PUT: handlePut};
   handler = function(req, res, next){
-    debugger;
     if (_.has(dispatch, req.method)){
       return dispatch[req.method](req, res, next);
     }

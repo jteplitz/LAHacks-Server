@@ -5,7 +5,8 @@
   var saveAuth, authHandler,
       
       extensionId = "dihjneilmgoagbmdbgonjhlkaiagoand",
-      appId       = "ugFAYVW2xcY3zcfeO0pvHZBk7YQlcG_LtYTPrIZHjJheSp7q";
+      appId       = "ugFAYVW2xcY3zcfeO0pvHZBk7YQlcG_LtYTPrIZHjJheSp7q",
+      auths       = [];
 
   $(document).ready(function(){
     Kloudless.authenticator($("#box"), {
@@ -20,29 +21,33 @@
       "app_id": appId,
       "services": ["gdrive"]
     }, authHandler);
-    Kloudless.authenticator($("#onedrive"), {
+    Kloudless.authenticator($("#skydrive"), {
       "app_id": appId,
-      "services": ["onedrive"]
+      "services": ["skydrive"]
     }, authHandler);
     $("#save").click(saveAuth);
   });
 
   authHandler = function(err, result){
-      if (err){
-        return console.log("error", err);
-      }
+    $(".done").show();
+    if (err){
+      return console.log("error", err);
+    }
 
-      var elem = $("#" + result.service);
-      elem.removeClass("connect");
-      elem.addClass("connected");
-      elem.text("✔  Connected");
+    var elem = $("#" + result.service);
+    elem.removeClass("connect");
+    elem.addClass("connected");
+    elem.text("✔  Connected");
+    Kloudless.stop(elem);
+
+    auths.push(result);
   };
 
   saveAuth = function(result){
     var authHeader = {"X-RUFFLES-AUTHENTICATION": "email=\"" + user.email + "\", pass=\"" + user.pass + "\", version=\"1\""};
     $.ajax({
       contentType: "application/json",
-      data: JSON.stringify({accounts: [result]}),
+      data: JSON.stringify({accounts: auths}),
       headers: authHeader,
       type: "PUT",
       success: function(data){

@@ -1,4 +1,3 @@
-!!! 5
 html
   head
     script(type="text/javascript").
@@ -10,31 +9,30 @@ html
     script(type="text/javascript", src="/scripts/kloudless.js")
     script(type="text/javascript", src="https://kloudless-static-assets.s3-us-west-2.amazonaws.com/p/platform/sdk/kloudless.authenticator.v0.1.js")
     link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400', rel='stylesheet', type='text/css')
-    link(rel='stylesheet', type='text/css', href='stylesheets/kloudless.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/kloudless.css')
     title Wormhole Authentication
   body
-    button#auth(type="button") Connect your files
     h1 Connect your accounts
     .services
       .service-box
-        img.logo-box(src='img/boxlogo.png')
+        img.logo-box(src='/img/boxlogo.png')
         h2 Box
         .action
-          a.connect#box(href='connect') Connect
+          a.connect#box Connect
       .service-box
-        img.logo-dropbox(src='img/dropboxlogo.png')
+        img.logo-dropbox(src='/img/dropboxlogo.png')
         h2 Dropbox
         .action
-          a.connected#dropbox(href='connect') ✔  Connected
+          a.connect#dropbox Connect
       .service-box
-        img.logo-drive(src='img/drivelogo.png')
+        img.logo-drive(src='/img/drivelogo.png')
         h2 Google Drive
         .action
-          a.connect#gdrive(href='connect') Connect
+          a.connect#gdrive Connect
       .service-box
-        img.logo-onedrive(src='img/onedrivelogo.png')
+        img.logo-onedrive(src='/img/onedrivelogo.png')
         h2 OneDrive
         .action
-          a.connect#skydrive(href='connect') Connect
-    .done
-      a.finish#save(href='what') Finish →
+          a.connect#skydrive Connect
+    .done.hidden
+      a.finish#save Finish →
