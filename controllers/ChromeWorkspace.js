@@ -44,7 +44,7 @@
         });
       }
       var workspaceObj = workspace.toObject();
-      workspaceObj.tabs = workspace.tabs.sort({order: 1});
+      //workspaceObj.tabs = workspace.tabs.sort({order: 1});
       data.workspace = workspaceObj;
       data._err      = 0;
 
