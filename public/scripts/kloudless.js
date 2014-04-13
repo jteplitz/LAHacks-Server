@@ -39,7 +39,12 @@
     elem.addClass("connected");
     elem.text("✔  Connected");
     Kloudless.stop(elem);
-
+    
+    for (var i = 0; i < auths.length; i++){
+      if (auths[i].id === result.id){
+        return;
+      }
+    }
     auths.push(result);
   };
 
