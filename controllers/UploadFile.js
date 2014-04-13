@@ -33,7 +33,7 @@
       path: "/v0/accounts/" + account + "/files?overwrite=true",
       protocol: "https:",
       port: 443,
-      headers: {Authorization: "ApiKey " + this.conf.get("kloudless:api_key"), "Content-Type": "multipart/form-data"}
+      kloudless: "ApiKey " + this.conf.get("kloudless:api_key")
     };
     console.log("options", options);
 
