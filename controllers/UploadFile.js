@@ -25,12 +25,15 @@
     var form = new FormData();
     form.append("parent_id", parent);
     form.append("name", name);
-    //form.append("file", fs.createReadStream(req.files.file.path), {knownLength: 11885});
-    form.append("file", fs.createReadStream(req.files.file.path));
+    form.append("file", fs.createReadStream(req.files.file.path), {knownLength: req.files.file.size});
+    console.log("file size", req.files.file.size);
+    //form.append("file", fs.createReadStream(req.files.file.path));
 
     form.submit({
       host: "api.kloudless.com",
       path: "/v0/accounts/" + account + "/files/True",
+      protocol: "https:",
+      port: 443,
       auth: "ApiKey " + this.conf.get("kloudless:api_key")
     }, cb);
 
