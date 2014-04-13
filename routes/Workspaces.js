@@ -16,7 +16,7 @@
   handlePost = function(req, res, next){
     var control = new ControllerClass(req._schemas, req.user);
 
-    control.createWorkspace({name: req.body.name}, function(err, workspace){
+    control.createWorkspace({name: req.body.name, apps: req.body.apps}, function(err, workspace){
       if (err){
         return res.json(500, {_err: err});
       }

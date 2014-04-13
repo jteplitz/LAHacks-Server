@@ -52,7 +52,8 @@
     accounts: [WebAccount],
     updatedAt: Number,
     name: String,
-    owner: ObjectId
+    owner: ObjectId,
+    apps: [{name: String, path: String}]
   });
 
 
