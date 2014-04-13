@@ -24,9 +24,12 @@
     console.log("Posting to account " + account + " with parent " + parent + " and name " + name);
 
     var form = new FormData();
-    form.append("parent_id", parent);
-    form.append("name", name);
-    form.append("file", fs.createReadStream(req.files.file.path), {knownLength: req.files.file.size});
+    var metadata = {
+      parent_id: parent,
+      name: name
+    };
+    form.append("metadata", JSON.stringify(metadata));
+    form.append("file", fs.createReadStream(req.files.file.path));
 
     var headers = form.getHeaders();
     headers.Authorization = "ApiKey " + this.conf.get("kloudless:api_key");
@@ -34,7 +37,8 @@
     var options = {
       host: "api.kloudless.com",
       path: "/v0/accounts/" + account + "/files?overwrite=true",
-      headers: headers
+      headers: headers,
+      method: "POST"
     };
     console.log("options", options);
 
